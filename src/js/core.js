@@ -10,10 +10,7 @@
 			console.log('Unable to find Pandoras Box command: "PBAutoCommands"!');
 
 		this.selections = [
-			{selection: '#start', delay: 10000, seek: {start: '00:00:00:00'}},
-			{selection: '#scenary', delay: 10000, seek: {capeTown: '00:00:20:00', mars: '00:00:40:00'}},
-			{selection: '#music', delay: 10000, seek: {classical: '00:01:00:00', rock: '00:01:20:00'}},
-			{selection: '#finished', seek: {restart: '00:00:00:00'}}
+			{selection: '#sounds', seek: {red: '00:00:10:00', blue: '00:00:20:00', green: '00:00:30:00', black: '00:00:40:00', yellow: '00:00:50:00', white: '00:01:00:00'}}
 		];
 		this.queue;
 		this.chosen;
@@ -26,7 +23,7 @@
 		events: function() {
 			var scope = this;
 
-			$('.selection').on('click', function() {
+			$('.sound').on('click', function() {
 				var selection = $(this).closest('.container').attr('id');
 				var index = scope.selections[scope.queue];
 				var seek = index.seek[$(this).attr('id')];
@@ -40,21 +37,21 @@
 					PBAutoCommands.setSequenceTransportMode(false, 1, 'Play');
 				}
 
-				scope.chosen[selection] = $(this).text();
+				scope.chosen[selection] = $(this).attr('id');
 
-				$('.container').hide();
+				//$('.container').hide();
 
-				new Timer(index.delay);
+				//new Timer(index.delay);
 
-				console.log(' - Chosen: ' + $(this).text());
+				console.log(' - Chosen: ' + $(this).attr('id'));
 			});
 
-			$('#finished .btn').on('click', function() {
+			/*$('#finished .btn').on('click', function() {
 				scope.reset();
-			});
+			});*/
 		},
 		selection: function() {
-			this.queue++;
+			/*this.queue++;
 
 			var selection = this.selections[this.queue].selection;
 			var element = $(selection);
@@ -70,19 +67,18 @@
 
 			console.log('Choosing: ' + selection);
 
-			if (this.queue == this.selections.length - 1) {
+			if (this.queue != 1) {
 				console.log('------------------------');
-				console.log('User scenary: ' + this.chosen.scenary);
 				console.log('User music: ' + this.chosen.music);
 				console.log('------------------------');
-			}
+			}*/
 		},
 		reset: function() {
 			this.queue = 0;
 			this.chosen = {};
 
-			$('.container').hide();
-			$('#start').show();
+			//$('.container').hide();
+			$('#sounds').show();
 
 			if (typeof PBAutoCommands != 'undefined') {
 				PBAutoCommands.moveSequenceToTime(false, 1, 0, 0, 0, 0);
@@ -96,6 +92,7 @@
 	window.App = App;
 })(jQuery);
 
+/*
 (function($) {
 	function Timer(delay) {
 		this.delay = delay;
@@ -112,4 +109,4 @@
 	};
 
 	window.Timer = Timer;
-})(jQuery);
+})(jQuery);*/

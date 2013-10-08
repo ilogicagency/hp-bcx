@@ -1,3 +1,33 @@
 .container{
 	display: none;
 }
+
+button.sound {
+    width: 80px;
+    height: 80px;
+    margin: 10px 5px 0 0;
+}
+
+#red {
+    background: #D90000;
+}
+
+#blue {
+    background: #0000B8;
+}
+
+#green {
+    background: #008300;
+}
+
+#black {
+    background: #000;
+}
+
+#yellow {
+    background: #FFFF6A;
+}
+
+#white {
+    background: #fff;
+}
