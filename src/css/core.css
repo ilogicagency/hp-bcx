@@ -1,33 +1,66 @@
-.container{
-	display: none;
+html, body {
+    width: 1920px;
+    height: 1080px;
 }
 
-button.sound {
-    width: 80px;
-    height: 80px;
-    margin: 10px 5px 0 0;
-}
-
-#red {
-    background: #D90000;
-}
-
-#blue {
-    background: #0000B8;
-}
-
-#green {
-    background: #008300;
-}
-
-#black {
+body {
+    padding: 0px;
+    margin: 0px;
+    overflow: hidden;
     background: #000;
 }
 
-#yellow {
-    background: #FFFF6A;
+.container {
+    width: 1522px !important;
 }
 
-#white {
-    background: #fff;
+.span11, .span5 {
+    margin-left: 0px;
+}
+
+.span11 {
+    width: 1052px !important;
+}
+
+.span5 {
+    float: right;
+}
+
+#chaos_box {
+    width: 463px;
+    height: 463px;
+    background: url(../img/hp_projectionmapping_console_xy_background.png) no-repeat;
+    margin: 0 0 0 auto;
+}
+
+button.video {
+    border-radius: 0px;
+    border: none;
+    width: 177px;
+    height: 140px;
+    margin: 0 20px 20px 0;
+}
+
+.green {
+    background: url(../img/hp_projectionmapping_console_button_green.png) no-repeat;
+}
+
+.turquoise {
+    background: url(../img/hp_projectionmapping_console_button_blue.png) no-repeat;
+}
+
+.red {
+    background: url(../img/hp_projectionmapping_console_button_red.png) no-repeat;
+}
+
+.blue {
+    background: url(../img/hp_projectionmapping_console_button_blue2.png) no-repeat;
+}
+
+button.video:hover {
+    background-position: 0;
+}
+
+button.video.active {
+    background: url(../img/hp_projectionmapping_console_button_active.png) no-repeat;
 }
