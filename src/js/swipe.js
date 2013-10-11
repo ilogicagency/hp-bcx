@@ -15,10 +15,7 @@
                 swipeStatus: function(event, phase, direction, distance, duration, fingers)
                 {
                     console.log("<h4>Swipe Phase : " + phase + "<br/>");
-                    console.log("Direction from inital touch: " + direction + "<br/>");
-                    console.log("Distance from inital touch: " + distance + "<br/>");
-                    console.log("Duration of swipe: " + duration + "<br/>");
-                    console.log("Fingers used: " + fingers + "<br/></h4>");
+					console.log(event.pageX + ' ; ' + event.pageY);
 
                     //Here we can check the:
                     //phase : 'start', 'move', 'end', 'cancel'
@@ -41,7 +38,7 @@
                     if (phase == "cancel")
                         console.log("<br/>Handler not triggered. <br/> One or both of the thresholds was not met ");
                     if (phase == "end")
-                        console.log("<br/>Handler was triggered.");
+                        console.log(event.pageX + ' ; ' + event.pageY);
                 },
                 threshold: 200,
                 maxTimeThreshold: 5000,

@@ -1,6 +1,6 @@
 (function($) {
     $(document).ready(function() {
-        debugConsole = true;
+        debugConsole = false;
 
         if (debugConsole)
             window.debug = new Debug();
@@ -16,10 +16,10 @@
         this.sections = ['menu'];
         this.sectionCurrent = 0;
         this.screensaverMode = {
-            screensaver: {seek: '00:20:00:00', delay: 10000}
+            screensaver: {seek: '00:00:00:00', delay: 31000}
         }
         this.demoMode = {
-            demo: {seek: '00:21:10:00', delay: 10000}
+            demo: {seek: '00:01:00:00', delay: 61000}
         }
         this.userChoices = [];
 
@@ -61,7 +61,7 @@
 
                 debug.output(' - Chosen: ' + choice);
             });
-
+            
             $('#demo').on('click', function(e) {
                 e.preventDefault();
 
@@ -83,7 +83,7 @@
 
                 debug.output(' - Chosen: ' + choice);
             });
-
+            
             $('#mapping').on('click', function(e) {
                 e.preventDefault();
                 scope.reset();
@@ -113,6 +113,8 @@
             scope.timer.start(delay, scope);
 
             scope.seek(scope.screensaverMode[playBack].seek);
+			
+			debug.output(' - AutoPlay: ' + playBack);
         },
         random: function(obj) {
             var random = Math.floor(Math.random() * this.objLength(obj));

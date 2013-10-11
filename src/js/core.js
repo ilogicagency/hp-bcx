@@ -1,6 +1,6 @@
 (function($) {
     $(document).ready(function() {
-        debugConsole = true;
+        debugConsole = false;
 
         if (debugConsole)
             window.debug = new Debug();
@@ -16,18 +16,22 @@
         this.sections = ['video'];
         this.sectionCurrent = 0;
         this.choices = {
-            green1: {seek: '00:00:00:00', delay: 60000},
-            green2: {seek: '00:01:10:00', delay: 60000},
-            green3: {seek: '00:02:20:00', delay: 60000},
-            green4: {seek: '00:03:30:00', delay: 60000},
-            turquoise1: {seek: '00:04:40:00', delay: 60000},
-            turquoise2: {seek: '00:05:50:00', delay: 60000},
-            turquoise3: {seek: '00:07:00:00', delay: 60000},
-            turquoise4: {seek: '00:08:10:00', delay: 60000},
-            red1: {seek: '00:09:20:00', delay: 60000},
-            red2: {seek: '00:10:30:00', delay: 60000},
-            red3: {seek: '00:11:40:00', delay: 60000},
-            red4: {seek: '00:12:50:00', delay: 60000}
+            green1: {seek: '00:02:30:00', delay: 31000},
+            green2: {seek: '00:03:30:00', delay: 31000},
+            green3: {seek: '00:04:30:00', delay: 31000},
+            green4: {seek: '00:05:30:00', delay: 31000},
+			turquoise1: {seek: '00:06:30:00', delay: 31000},
+            turquoise2: {seek: '00:07:30:00', delay: 31000},
+            turquoise3: {seek: '00:08:30:00', delay: 31000},
+            turquoise4: {seek: '00:09:30:00', delay: 31000},
+            red1: {seek: '00:10:30:00', delay: 31000},
+            red2: {seek: '00:11:30:00', delay: 61000},
+			red3: {seek: '00:13:00:00', delay: 31000},
+            red4: {seek: '00:14:00:00', delay: 31000},
+            blue1: {seek: '00:15:00:00', delay: 31000},
+            blue2: {seek: '00:16:00:00', delay: 31000},
+            blue3: {seek: '00:17:00:00', delay: 31000},
+            blue4: {seek: '00:18:00:00', delay: 31000}
         }
         this.userChoices = [];
 
