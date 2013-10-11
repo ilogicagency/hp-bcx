@@ -78,14 +78,45 @@ button.video:focus {
     outline-offset: 0px;
 }
 
-button.menu_btn {
-    width: 200px;
-    height: 50px;
-    display: block;
-    margin: 10px auto;
-    text-transform: uppercase;
+#menu {
+    position: absolute;
+    top: 44%;
 }
 
-button.menu_btn.active {
-    background: #ff0;
+button.menu_btn {
+    width: 459px;
+    height: 140px;
+    padding: 0px;
+}
+
+#screensaver {
+    background: url(../img/hp_projectionmapping_console_button_screensaver.png) no-repeat;
+}
+
+#demo {
+    background: url(../img/hp_projectionmapping_console_button_introvideo.png) no-repeat;
+    margin: 0 68px;
+}
+
+#mapping {
+    background: url(../img/hp_projectionmapping_console_button_projectionmapping.png) no-repeat;
+}
+
+#screensaver.active,
+#demo.active,
+#mapping.active {
+    background-position: bottom;
+}
+
+#cursor {
+    position: absolute;
+    display: none;
+}
+
+.ui-btn.ui-btn-up-c.ui-shadow.ui-btn-corner-all {
+	display: inline-block;
+}
+
+.ui-loader.ui-corner-all.ui-body-a.ui-loader-default {
+	display: none;
 }

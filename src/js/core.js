@@ -1,10 +1,11 @@
 (function($) {
     $(document).ready(function() {
+        window.debug = new Debug();
         window.app = new App();
     });
 })(jQuery);
 
-(function($) {
+(function($, window) {
     function App() {
         if (typeof PBAutoCommands == 'undefined')
             console.log('Unable to find Pandoras Box command: "PBAutoCommands"!');
@@ -12,18 +13,18 @@
         this.sections = ['video'];
         this.sectionCurrent = 0;
         this.choices = {
-            green1: {seek: '00:00:00:00', delay: 60000},
-            green2: {seek: '00:01:00:00', delay: 60000},
-            green3: {seek: '00:02:00:00', delay: 60000},
-            green4: {seek: '00:03:00:00', delay: 60000},
-            turquoise1: {seek: '00:04:00:00', delay: 60000},
-            turquoise2: {seek: '00:05:00:00', delay: 60000},
-            turquoise3: {seek: '00:06:00:00', delay: 60000},
-            turquoise4: {seek: '00:07:00:00', delay: 60000},
-            red1: {seek: '00:08:00:00', delay: 60000},
-            red2: {seek: '00:09:00:00', delay: 60000},
-            red3: {seek: '00:10:00:00', delay: 60000},
-            red4: {seek: '00:11:00:00', delay: 60000}
+            green1: {seek: '00:00:00:00', delay: 10000},
+            green2: {seek: '00:01:00:00', delay: 3000},
+            green3: {seek: '00:02:00:00', delay: 3000},
+            green4: {seek: '00:03:00:00', delay: 3000},
+            turquoise1: {seek: '00:00:10:00', delay: 10000},
+            turquoise2: {seek: '00:05:00:00', delay: 3000},
+            turquoise3: {seek: '00:06:00:00', delay: 3000},
+            turquoise4: {seek: '00:07:00:00', delay: 3000},
+            red1: {seek: '00:00:20:00', delay: 10000},
+            red2: {seek: '00:09:00:00', delay: 3000},
+            red3: {seek: '00:10:00:00', delay: 3000},
+            red4: {seek: '00:11:00:00', delay: 3000}
         }
         this.userChoices = [];
 
@@ -63,7 +64,7 @@
 
                 scope.seek(scope.choices[choice].seek);
 
-                console.log(' - Chosen: ' + choice);
+                debug.output(' - Chosen: ' + choice);
             });
         },
         seek: function(seek) {
@@ -124,20 +125,37 @@
     };
 
     window.App = App;
-})(jQuery);
+})(jQuery, window);
 
-
-(function($) {
+(function($, window) {
     function Timer() {
+        this.timer;
     }
 
     Timer.prototype = {
         start: function(delay, scope) {
-            $.doTimeout('timer', delay, function() {
+            clearInterval(this.timer);
+
+            this.timer = setTimeout(function() {
                 scope.selection(scope);
-            });
+            }, delay);
         }
     };
 
     window.Timer = Timer;
-})(jQuery);
+})(jQuery, window);
+
+(function($, window) {
+    function Debug() {
+        $('body').prepend('<div id="debug">');
+        $('#debug').css('position', 'absolute').css('top', 0).css('background', '#222').css('color', '#fff');
+    }
+
+    Debug.prototype = {
+        output: function(text) {
+            $('#debug').html($('#debug').html() + '<br/>' + text);
+        }
+    };
+
+    window.Debug = Debug;
+})(jQuery, window);

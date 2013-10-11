@@ -1,5 +1,6 @@
 (function($) {
     $(document).ready(function() {
+        window.debug = new Debug();
         window.app = new App();
     });
 })(jQuery);
@@ -12,10 +13,10 @@
         this.sections = ['menu'];
         this.sectionCurrent = 0;
         this.screensaverMode = {
-            screensaver: {seek: '00:20:00:00', delay: 60000}
+            screensaver: {seek: '00:20:00:00', delay: 10000}
         }
         this.demoMode = {
-            demo: {seek: '00:21:10:00', delay: 60000}
+            demo: {seek: '00:21:10:00', delay: 10000}
         }
         this.userChoices = [];
 
@@ -55,7 +56,7 @@
 
                 scope.seek(scope.screensaverMode[choice].seek);
 
-                console.log(' - Chosen: ' + choice);
+                console.output(' - Chosen: ' + choice);
             });
             
             $('#demo').on('click', function(e) {
@@ -77,7 +78,7 @@
 
                 scope.seek(scope.demoMode[choice].seek);
 
-                console.log(' - Chosen: ' + choice);
+                console.output(' - Chosen: ' + choice);
             });
             
             $('#mapping').on('click', function(e) {
@@ -159,3 +160,18 @@
 
     window.Timer = Timer;
 })(jQuery);
+
+(function($, window) {
+    function Debug() {
+        $('body').prepend('<div id="debug">');
+        $('#debug').css('position', 'absolute').css('top', 0).css('background', '#222').css('color', '#fff');
+    }
+
+    Debug.prototype = {
+        output: function(text) {
+            $('#debug').html($('#debug').html() + '<br/>' + text);
+        }
+    };
+
+    window.Debug = Debug;
+})(jQuery, window);
