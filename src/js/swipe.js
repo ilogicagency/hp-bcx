@@ -1,30 +1,54 @@
 (function($) {
     $(document).ready(function() {
-        window.swipe = new Swipe();
+        window.effect = new Effect();
     });
 })(jQuery);
 
 (function($) {
-    function Swipe() {
+    function Effect() {
         this.event();
     }
 
-    Swipe.prototype = {
+    Effect.prototype = {
         event: function() {
-            var scope = this;
-            $('html').on('vmousemove', function(e) {
-                $('html').css({'cursor':'url(./src/img/hp_projectionmapping_console_button_blue2.png) ' + e.pageY + ' ' + e.pageX + ', auto'});
-            });
+            $("#main").swipe({
+                swipeStatus: function(event, phase, direction, distance, duration, fingers)
+                {
+                    console.log("<h4>Swipe Phase : " + phase + "<br/>");
+                    console.log("Direction from inital touch: " + direction + "<br/>");
+                    console.log("Distance from inital touch: " + distance + "<br/>");
+                    console.log("Duration of swipe: " + duration + "<br/>");
+                    console.log("Fingers used: " + fingers + "<br/></h4>");
 
-            $('html').on('vmouseup', function(e) {
-                $('#cursor').hide();
-                var element = $(e.target).children().children('button');
-                console.log(element);
-                $(element).trigger('click');
-                console.log('x: ' + e.pageX + '; y: ' + e.pageY);
+                    //Here we can check the:
+                    //phase : 'start', 'move', 'end', 'cancel'
+                    //direction : 'left', 'right', 'up', 'down'
+                    //distance : Distance finger is from initial touch point in px
+                    //duration : Length of swipe in MS 
+                    //fingerCount : the number of fingers used
+                    if (phase != "cancel" && phase != "end") {
+                        if (duration < 5000)
+                            console.log("Under maxTimeThreshold.<h3>Swipe handler will be triggered if you release at this point.</h3>");
+                        else
+                            console.log("Over maxTimeThreshold. <h3>Swipe handler will be canceled if you release at this point.</h3>");
+
+                        if (distance < 200)
+                            console.log("Not yet reached threshold.  <h3>Swipe will be canceled if you release at this point.</h3>");
+                        else
+                            console.log("Threshold reached <h3>Swipe handler will be triggered if you release at this point.</h3>");
+                    }
+
+                    if (phase == "cancel")
+                        console.log("<br/>Handler not triggered. <br/> One or both of the thresholds was not met ");
+                    if (phase == "end")
+                        console.log("<br/>Handler was triggered.");
+                },
+                threshold: 200,
+                maxTimeThreshold: 5000,
+                fingers: 'all'
             });
         }
     };
 
-    window.Swipe = Swipe;
+    window.Effect = Effect;
 })(jQuery);

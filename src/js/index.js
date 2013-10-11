@@ -1,6 +1,9 @@
 (function($) {
     $(document).ready(function() {
-        window.debug = new Debug();
+        debugConsole = true;
+
+        if (debugConsole)
+            window.debug = new Debug();
         window.app = new App();
     });
 })(jQuery);
@@ -56,9 +59,9 @@
 
                 scope.seek(scope.screensaverMode[choice].seek);
 
-                console.output(' - Chosen: ' + choice);
+                debug.output(' - Chosen: ' + choice);
             });
-            
+
             $('#demo').on('click', function(e) {
                 e.preventDefault();
 
@@ -78,9 +81,9 @@
 
                 scope.seek(scope.demoMode[choice].seek);
 
-                console.output(' - Chosen: ' + choice);
+                debug.output(' - Chosen: ' + choice);
             });
-            
+
             $('#mapping').on('click', function(e) {
                 e.preventDefault();
                 scope.reset();
@@ -148,13 +151,16 @@
 
 (function($) {
     function Timer() {
+        this.timer;
     }
 
     Timer.prototype = {
         start: function(delay, scope) {
-            $.doTimeout('timer', delay, function() {
+            clearInterval(this.timer);
+
+            this.timer = setTimeout(function() {
                 scope.selection(scope);
-            });
+            }, delay);
         }
     };
 

@@ -1,6 +1,9 @@
 (function($) {
     $(document).ready(function() {
-        window.debug = new Debug();
+        debugConsole = true;
+
+        if (debugConsole)
+            window.debug = new Debug();
         window.app = new App();
     });
 })(jQuery);
@@ -13,18 +16,18 @@
         this.sections = ['video'];
         this.sectionCurrent = 0;
         this.choices = {
-            green1: {seek: '00:00:00:00', delay: 10000},
-            green2: {seek: '00:01:00:00', delay: 3000},
-            green3: {seek: '00:02:00:00', delay: 3000},
-            green4: {seek: '00:03:00:00', delay: 3000},
-            turquoise1: {seek: '00:00:10:00', delay: 10000},
-            turquoise2: {seek: '00:05:00:00', delay: 3000},
-            turquoise3: {seek: '00:06:00:00', delay: 3000},
-            turquoise4: {seek: '00:07:00:00', delay: 3000},
-            red1: {seek: '00:00:20:00', delay: 10000},
-            red2: {seek: '00:09:00:00', delay: 3000},
-            red3: {seek: '00:10:00:00', delay: 3000},
-            red4: {seek: '00:11:00:00', delay: 3000}
+            green1: {seek: '00:00:00:00', delay: 60000},
+            green2: {seek: '00:01:10:00', delay: 60000},
+            green3: {seek: '00:02:20:00', delay: 60000},
+            green4: {seek: '00:03:30:00', delay: 60000},
+            turquoise1: {seek: '00:04:40:00', delay: 60000},
+            turquoise2: {seek: '00:05:50:00', delay: 60000},
+            turquoise3: {seek: '00:07:00:00', delay: 60000},
+            turquoise4: {seek: '00:08:10:00', delay: 60000},
+            red1: {seek: '00:09:20:00', delay: 60000},
+            red2: {seek: '00:10:30:00', delay: 60000},
+            red3: {seek: '00:11:40:00', delay: 60000},
+            red4: {seek: '00:12:50:00', delay: 60000}
         }
         this.userChoices = [];
 
@@ -90,6 +93,8 @@
             scope.timer.start(delay, scope);
 
             scope.seek(scope.choices[playBack].seek);
+
+            debug.output(' - AutoPlay: ' + playBack);
         },
         random: function(obj) {
             var random = Math.floor(Math.random() * this.objLength(obj));
@@ -114,8 +119,6 @@
         reset: function() {
             this.sectionCurrent = 0;
             this.userChoices = [];
-
-            $('#sounds').show();
 
             if (typeof PBAutoCommands != 'undefined') {
                 PBAutoCommands.moveSequenceToTime(false, 1, 0, 0, 0, 0);
